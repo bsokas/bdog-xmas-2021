@@ -1,0 +1,14 @@
+.GameCard {
+    width: 200px;
+    height: 200px;
+    margin: 20px 20px;
+    background-color: teal;
+}
+
+.hide-card {
+    background-color: teal
+}
+
+.show-card {
+    background-color: lightpink
+}
