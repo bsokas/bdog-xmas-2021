@@ -1,10 +1,11 @@
 import React from 'react'
 import './App.css'
-import { GameCard } from './components'
+import { GameCard, StartScreen } from './components'
 
 const App = () => (
     <div className="App">
-        <GameCard />
+        <StartScreen />
+        {/* <GameCard /> */}
     </div>
 )
 
