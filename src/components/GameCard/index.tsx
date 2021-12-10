@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
+import { CardProps } from '../constants/cards'
 import './GameCard.css'
 
-export interface Props {
+export type Props = {
     showPicture?: boolean
-}
+    id: number
+} & CardProps
 
 const GameCard = ({ showPicture }: Props) => {
     const [showImg, setShowImg] = useState<boolean>(false)

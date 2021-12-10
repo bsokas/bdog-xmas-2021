@@ -4,6 +4,10 @@ import './StartScreen.css'
 const StartScreen = () => {
     const [gameOn, setGameOn] = useState<boolean>(false)
 
+    const endGame = () => {
+        setGameOn(false)
+    }
+
     return (
         <div className="start-container">
             {!gameOn && 
@@ -20,7 +24,7 @@ const StartScreen = () => {
                     </div>
                     <div 
                         className="start-button"
-                        onClick={() => { console.log('Clicked')}}
+                        onClick={() => { setGameOn(true) }}
                     >
                         <p className="button">
                             PLAY!
