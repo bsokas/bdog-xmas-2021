@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import './StartScreen.css'
+import { GameBoard } from '..'
 
 const StartScreen = () => {
     const [gameOn, setGameOn] = useState<boolean>(false)
@@ -31,6 +32,9 @@ const StartScreen = () => {
                         </p>
                     </div>
                 </>
+            }
+            {gameOn &&
+                <GameBoard />
             }
         </div>
     )

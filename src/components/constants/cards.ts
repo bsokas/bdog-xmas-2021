@@ -5,7 +5,7 @@ export interface CardProps {
 
 export const cards: CardProps[] = [
     {
-        imagePath: 'src/content/images/black_cat.png',
+        imagePath: '/cardImages/black_cat.png',
         key: 'black-cat' 
     },
     // Uncomment once images are set up

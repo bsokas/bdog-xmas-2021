@@ -1,14 +1,23 @@
 .GameCard {
-    width: 200px;
-    height: 200px;
+    width: 15%;
+    height: 25%;
     margin: 20px 20px;
-    background-color: teal;
+    border: solid black;
+    border-radius: 10%;
 }
 
 .hide-card {
-    background-color: teal
+    background-color: #d53235;
+}
+
+.snowflake {
+    width: 100%;
+    height: 95%;
+    object-fit: contain;
+    object-position: center;
+    background-color: transparent;
 }
 
 .show-card {
-    background-color: lightpink
+    background-color: palegoldenrod;
 }

@@ -7,7 +7,7 @@ import { cards } from "../constants/cards";
  */
 export function generateRandomizedCardsList(): GameCardProps[] {
     let cardsList: GameCardProps[] = new Array<GameCardProps>(cards.length * cards.length)
-    let usedSlotList: Set<number>
+    let usedSlotList: Set<number> = new Set<number>()
     let id = 0
 
     for (let card of cards) {
