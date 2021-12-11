@@ -8,20 +8,23 @@ export interface Props {
     endGameHandler: Function
 }
 
-const GameBoard = ({  }) => {
+const GameBoard = ({ endGameHandler }: Props) => {
     const [gameCards, setGameCards] = useState<GameCardProps[]>()
 
     // On initial render
     useEffect(() => {
         setGameCards(generateRandomizedCardsList())
-    })
+    }, [])
 
+    let cardsRendered = 0
     return (
         // TODO loading circle
         <div className="game-container">
-            {gameCards?.map(card => (
-                <GameCard {...card}/>
-            ))}
+            {gameCards?.map(card => {
+                cardsRendered += 1
+                console.log(cardsRendered)
+                return <GameCard {...card}/>
+            })}
         </div>
     )
 }

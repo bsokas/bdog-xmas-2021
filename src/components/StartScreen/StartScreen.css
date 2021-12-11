@@ -13,6 +13,8 @@ h2.title {
 .start-button {
     display: flex;
     margin: auto;
+    margin-top: 2%;
+    margin-bottom: 2%;
     height: 10%;
     width: 20%;
     border-style: solid;

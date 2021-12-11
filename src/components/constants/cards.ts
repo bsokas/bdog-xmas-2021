@@ -1,32 +1,37 @@
 export interface CardProps {
     imagePath: string
-    key: string
+    id: string
 }
 
+const imagesRoot = '/cardImages'
 export const cards: CardProps[] = [
-    {
-        imagePath: '/cardImages/black_cat.png',
-        key: 'black-cat' 
-    },
-    // Uncomment once images are set up
+    // Testing value
     /**{
-        key: 'max',
-        imagePath: ''
+        imagePath: '/cardImages/black_cat.png',
+        id: 'black-cat' 
+    },**/
+    {
+        id: 'max',
+        imagePath: `${imagesRoot}/max.png`
     },
     {
-        key: 'obi',
-        imagePath: ''
+        id: 'obi',
+        imagePath: `${imagesRoot}/obes.png`
     },
     {
-        key: 'effie',
-        imagePath: ''
+        id: 'effie',
+        imagePath: `${imagesRoot}/effie.png`
     },
     {
-        key: 'rooney',
-        imagePath: ''
+        id: 'rooney',
+        imagePath: `${imagesRoot}/rooney.png`
     },
     {
-        key: 'pepper',
-        imagePath: ''
-    }**/
+        id: 'pepper',
+        imagePath: `${imagesRoot}/pepper.jpeg`
+    },
+    {
+        id: 'roo_and_effie',
+        imagePath: `${imagesRoot}/roo_and_effie.jpg`
+    }
 ]

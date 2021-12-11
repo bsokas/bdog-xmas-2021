@@ -11,6 +11,9 @@
 # production
 /build
 
+# image files (temporary, until deployment)
+/public/cardImages
+
 # misc
 .DS_Store
 .env.local

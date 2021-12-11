@@ -1,7 +1,7 @@
 .GameCard {
-    width: 15%;
-    height: 25%;
-    margin: 20px 20px;
+    width: 20%; /* based on 12 cards */
+    height: 28%;
+    margin: 1% 1%;
     border: solid black;
     border-radius: 10%;
 }
@@ -10,14 +10,18 @@
     background-color: #d53235;
 }
 
-.snowflake {
+.card-img {
     width: 100%;
     height: 95%;
+    margin-top: 2%;
     object-fit: contain;
     object-position: center;
+}
+
+.snowflake {
     background-color: transparent;
 }
 
 .show-card {
-    background-color: palegoldenrod;
+    background-color: #34A65F;
 }
