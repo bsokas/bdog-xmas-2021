@@ -12,7 +12,6 @@ export function generateRandomizedCardsList(): GameCardProps[] {
 
     for (let card of cards) {
         let copies = [card, card]
-        debugger
         
         copies.forEach(copy => {
             let slot = randomIntSlot(cardsList.length)
@@ -24,7 +23,6 @@ export function generateRandomizedCardsList(): GameCardProps[] {
         })
     }
 
-    debugger
     return cardsList
 }
 

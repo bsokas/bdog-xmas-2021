@@ -6,6 +6,10 @@
     background-color: white;
 }
 
+.subtext {
+    padding-left: 5%;
+}
+
 h2.title {
     text-align: center;
 }
