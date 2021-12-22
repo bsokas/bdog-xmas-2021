@@ -2,12 +2,18 @@
     width: 100%;
     height: 100%;
     display: flex;
+}
+
+.cards-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
 }
 
 .game-complete {
-    width: 80%;
-    height: 80%;
+    width: 50%;
+    height: 50%;
     background-color: pink;
 }

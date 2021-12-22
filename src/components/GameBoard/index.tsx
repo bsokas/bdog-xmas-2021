@@ -16,6 +16,7 @@ interface ClickedCardProps {
 const GameBoard = ({ endGameHandler }: Props) => {
     const [gameCards, setGameCards] = useState<GameCardProps[]>()
     const [foundCards, setFoundCards] = useState<Set<number>>(new Set<number>())
+    const [gameComplete, setGameComplete] = useState<boolean>(false)
     
     // clickedCards are numbers to track the unique entries
     const [clickedCardA, setClickedCardA] = useState<ClickedCardProps | undefined>(undefined)
@@ -26,14 +27,14 @@ const GameBoard = ({ endGameHandler }: Props) => {
         setGameCards(generateRandomizedCardsList())
     }, [])
 
-    async function cardDelay () { await cardTransitionDelay(1.5)}
+    async function cardDelay () { await cardTransitionDelay(10)}
 
     // handler for checking matches
     useEffect(() => {
         if (!clickedCardA || !clickedCardB) return
-        debugger
+        
         const matched = clickedCardA.cardId === clickedCardB.cardId
-        if (matched) debugger
+        
         if (matched) {
             // need some sort of highlight here
             setFoundCards(prev => {
@@ -43,6 +44,19 @@ const GameBoard = ({ endGameHandler }: Props) => {
             })
         }
     }, [clickedCardA, clickedCardB])
+
+
+    // handler for handling a new match
+    useEffect(() => {
+        if (gameCards && foundCards.size === gameCards.length) {
+            setGameComplete(true)
+        } else if (clickedCardA && clickedCardB) {
+            cardDelay()
+            setClickedCardA(undefined)
+            setClickedCardB(undefined)
+        }
+
+    }, [foundCards])
 
     /**
      * Handles a click of a game card
@@ -77,8 +91,8 @@ const GameBoard = ({ endGameHandler }: Props) => {
     return (
         // TODO loading circle
         <>
-            {foundCards.size !== gameCards?.length ? 
-                (<div className="game-container">
+            <div className="game-container">
+                <div className="cards-container">
                     {gameCards?.map(card => {
                         const showImg = clickedCardA?.cardKey === card.cardKey || clickedCardB?.cardKey === card.cardKey
                         if (foundCards.has(card.cardKey)) debugger
@@ -92,8 +106,10 @@ const GameBoard = ({ endGameHandler }: Props) => {
                             />
                         )
                     })}
-                </div>) : <div className="game-complete"/>
-            }
+                </div>
+                {/* TODO need a nicer completion window */}
+                {gameComplete && <div className="game-complete"/>}
+            </div>
         </>
     )
 }

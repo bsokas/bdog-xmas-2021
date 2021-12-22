@@ -32,7 +32,7 @@ const GameCard = ({ imagePath, cardKey, id, cardClickHandler, matched, showImg }
                 cardClickHandler(cardKey, id)
             }}
         >
-            {showImg ? (
+            {showImg || matched? (
                 <img alt={id} src={imagePath} className={`card-img`} />
             ) : (
                 <img alt="snowflake" src={'/cardImages/snowflake.png'} className="card-img snowflake"/>
