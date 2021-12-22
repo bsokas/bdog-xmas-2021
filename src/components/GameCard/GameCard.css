@@ -4,6 +4,7 @@
     margin: 1% 1%;
     border: solid black;
     border-radius: 10%;
+    cursor: pointer;
 }
 
 .hide-card {
@@ -16,6 +17,10 @@
     margin-top: 2%;
     object-fit: contain;
     object-position: center;
+}
+
+.matched {
+    background-color: orange;
 }
 
 .snowflake {

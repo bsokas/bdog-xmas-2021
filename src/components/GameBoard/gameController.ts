@@ -8,7 +8,7 @@ import { cards } from "../constants/cards";
 export function generateRandomizedCardsList(): GameCardProps[] {
     let cardsList: GameCardProps[] = new Array<GameCardProps>(cards.length * 2)
     let usedSlotList: Set<number> = new Set<number>()
-    let key = 0
+    let cardKey = 0
 
     for (let card of cards) {
         let copies = [card, card]
@@ -17,13 +17,17 @@ export function generateRandomizedCardsList(): GameCardProps[] {
             let slot = randomIntSlot(cardsList.length)
             while(usedSlotList.has(slot)) slot = randomIntSlot(cardsList.length)
             
-            cardsList[slot] = {...copy, key}
+            cardsList[slot] = {...copy, cardKey}
             usedSlotList.add(slot)
-            key++
+            cardKey++
         })
     }
 
     return cardsList
+}
+
+export async function cardTransitionDelay(delayInSec: number) {
+    return new Promise( delay => setTimeout(() => {}, delayInSec * 1000))
 }
 
 function randomIntSlot(max: number): number {

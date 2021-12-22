@@ -1,41 +1,44 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import { CardProps } from '../constants/cards'
 import './GameCard.css'
 
 export type Props = {
-    key: number
+    cardKey: number,
 } & CardProps
 
 type GameCardProps = {
     cardClickHandler: Function,
-    checkMatch: Function
+    showImg: boolean,
+    matched: boolean
 } & Props
 
-const GameCard = ({ imagePath, key, id, cardClickHandler, checkMatch }: GameCardProps) => {
-    const [showImg, setShowImg] = useState<boolean>(false)
-    const [cardMatched, setCardMatched] = useState<boolean>(false)
-
-    useEffect(() => {
-        if (!showImg) return
-
-        // TODO need to figure out how to turn off cards after no match, maybe a timer
-        const matched = checkMatch()
-        if (matched !== undefined && !matched) setShowImg(false)
-        setCardMatched(matched)
-    }, [showImg])
+const GameCard = ({ imagePath, cardKey, id, cardClickHandler, matched, showImg }: GameCardProps) => {
+    let gameCardColor: string
+    if (matched) {
+        gameCardColor = 'matched'
+    } else if (!showImg) {
+        gameCardColor = 'hide-card'
+    } else {
+        gameCardColor = 'show-card'
+    }
 
     return (
         <div 
-            key={key}
-            className={`GameCard ${!showImg ? 'hide-card' : 'show-card'}`}
+            key={cardKey}
+            className={`GameCard ${gameCardColor}`}
             onClick={() => {
-                if (cardMatched) return
+                if (matched) return
                 
-                setShowImg(cardClickHandler(id))
+                cardClickHandler(cardKey, id)
             }}
         >
-            {!showImg && <img alt="snowflake" src={'/cardImages/snowflake.png'} className="card-img snowflake"/>}
-            {showImg && <img alt={id} src={imagePath} className="card-img" /> }
+            {showImg ? (
+                <img alt={id} src={imagePath} className={`card-img`} />
+            ) : (
+                <img alt="snowflake" src={'/cardImages/snowflake.png'} className="card-img snowflake"/>
+                
+            )}
+            {matched && <div className="matched-indicator"/>}
         </div>
     )
 }

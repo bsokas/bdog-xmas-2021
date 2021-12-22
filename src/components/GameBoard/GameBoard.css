@@ -5,3 +5,9 @@
     flex-wrap: wrap;
     justify-content: space-around;
 }
+
+.game-complete {
+    width: 80%;
+    height: 80%;
+    background-color: pink;
+}

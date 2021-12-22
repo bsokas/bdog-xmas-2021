@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import { createContext, useContext, useEffect, useState } from 'react'
 import { Props as GameCardProps } from '../GameCard'
-import { generateRandomizedCardsList } from './gameController'
+import { generateRandomizedCardsList, cardTransitionDelay } from './gameController'
 import './GameBoard.css'
 import { GameCard } from '..'
 
@@ -8,35 +8,60 @@ export interface Props {
     endGameHandler: Function
 }
 
+interface ClickedCardProps {
+    cardKey: number,
+    cardId: string
+}
+
 const GameBoard = ({ endGameHandler }: Props) => {
     const [gameCards, setGameCards] = useState<GameCardProps[]>()
-    const [clickedCardA, setClickedCardA] = useState<number>()
-    const [clickedCardB, setClickedCardB] = useState<number>()
     const [foundCards, setFoundCards] = useState<Set<number>>(new Set<number>())
+    
+    // clickedCards are numbers to track the unique entries
+    const [clickedCardA, setClickedCardA] = useState<ClickedCardProps | undefined>(undefined)
+    const [clickedCardB, setClickedCardB] = useState<ClickedCardProps | undefined>(undefined)
 
     // On initial render
     useEffect(() => {
         setGameCards(generateRandomizedCardsList())
     }, [])
 
+    async function cardDelay () { await cardTransitionDelay(1.5)}
+
+    // handler for checking matches
+    useEffect(() => {
+        if (!clickedCardA || !clickedCardB) return
+        debugger
+        const matched = clickedCardA.cardId === clickedCardB.cardId
+        if (matched) debugger
+        if (matched) {
+            // need some sort of highlight here
+            setFoundCards(prev => {
+                prev.add(clickedCardA.cardKey)
+                prev.add(clickedCardB.cardKey)
+                return new Set<number>(prev)
+            })
+        }
+    }, [clickedCardA, clickedCardB])
+
     /**
      * Handles a click of a game card
      * @param cardId unique identifier for the GameCard
      * @returns boolean value to reflect whether the card image is stored and image should be exposed
      */
-    const cardClickHandler = (cardId: number): boolean => {
-        if (foundCards.has(cardId)) return true
+    const cardClickHandler = (cardKey: number, cardId: string): boolean => {
+        if (foundCards.has(cardKey)) return true
         
         if (!clickedCardA) {
-            setClickedCardA(cardId)
+            setClickedCardA({ cardKey, cardId })
             return true
-        } else if (!clickedCardB) {
-            setClickedCardB(cardId)
-            return true
-        } else if (cardId === clickedCardA) { // switch off
+        } else if (cardKey === clickedCardA.cardKey) {
             setClickedCardA(undefined)
             return false
-        } else if (cardId === clickedCardB) { // switch off
+        } else if (!clickedCardB) {
+            setClickedCardB({ cardKey, cardId })
+            return true
+        } else if (cardKey === clickedCardB.cardKey) {
             setClickedCardB(undefined)
             return false
         }
@@ -45,44 +70,31 @@ const GameBoard = ({ endGameHandler }: Props) => {
     }
 
     /**
-     * 
-     * @param cardId 
-     * @returns boolean true if a match has been found, false if not, and undefined if matching is unavailable
-     */
-    const checkMatch = (): boolean | undefined => {
-        debugger
-        if (!clickedCardA || !clickedCardB) return
-
-        const matched = clickedCardA === clickedCardB
-        if (matched) {
-            setFoundCards(prev => {
-                prev.add(clickedCardA)
-                prev.add(clickedCardB)
-                return new Set<number>(prev)
-            })
-        }
-
-        setClickedCardA(undefined)
-        setClickedCardB(undefined)
-
-        return matched
-    }
-
-    /**
      * Checks if the memory game has been completed
      */
     const checkGame = (): boolean => (foundCards?.size === gameCards?.length)
 
-    let cardsRendered = 0
     return (
         // TODO loading circle
-        <div className="game-container">
-            {gameCards?.map(card => {
-                cardsRendered += 1
-                console.log(cardsRendered)
-                return <GameCard {...card} cardClickHandler={cardClickHandler} checkMatch={checkMatch}/>
-            })}
-        </div>
+        <>
+            {foundCards.size !== gameCards?.length ? 
+                (<div className="game-container">
+                    {gameCards?.map(card => {
+                        const showImg = clickedCardA?.cardKey === card.cardKey || clickedCardB?.cardKey === card.cardKey
+                        if (foundCards.has(card.cardKey)) debugger
+                        return(
+                            <GameCard
+                                {...card}
+                                key={100}
+                                cardClickHandler={cardClickHandler}
+                                showImg={showImg}
+                                matched={foundCards.has(card.cardKey)}
+                            />
+                        )
+                    })}
+                </div>) : <div className="game-complete"/>
+            }
+        </>
     )
 }
 
