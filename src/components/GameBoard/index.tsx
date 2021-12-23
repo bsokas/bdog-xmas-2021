@@ -99,7 +99,7 @@ const GameBoard = ({ endGameHandler }: Props) => {
                         return(
                             <GameCard
                                 {...card}
-                                key={100}
+                                key={card.cardKey}
                                 cardClickHandler={cardClickHandler}
                                 showImg={showImg}
                                 matched={foundCards.has(card.cardKey)}
