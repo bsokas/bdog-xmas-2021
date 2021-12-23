@@ -1,0 +1,34 @@
+.complete-container {
+    position: absolute;
+    width: 70%;
+    height: 80%;
+    background-color: #EA4630;
+    border-radius: 5%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.title {
+    text-align: center;
+    height: 30%;
+}
+
+.title-h3 {
+    font-weight: 900;
+    font-family: fantasy;
+    font-size: 3.5em;
+    color: white;
+} 
+
+.subtitle {
+    height: 60%;
+    padding: 2% 2%; 
+}
+
+.subtitle-p {
+    font-family: fantasy;
+    font-size: 2em;
+    color: white;
+    font-weight: 400;
+}

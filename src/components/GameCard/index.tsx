@@ -1,4 +1,3 @@
-import { useEffect, useState, useContext } from 'react'
 import { CardProps } from '../constants/cards'
 import './GameCard.css'
 

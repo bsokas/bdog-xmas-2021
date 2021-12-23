@@ -1,8 +1,8 @@
-import { createContext, useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Props as GameCardProps } from '../GameCard'
 import { generateRandomizedCardsList, cardTransitionDelay } from './gameController'
 import './GameBoard.css'
-import { GameCard } from '..'
+import { GameCard, GameComplete } from '..'
 
 export interface Props {
     endGameHandler: Function
@@ -108,7 +108,7 @@ const GameBoard = ({ endGameHandler }: Props) => {
                     })}
                 </div>
                 {/* TODO need a nicer completion window */}
-                {gameComplete && <div className="game-complete"/>}
+                {gameComplete && <GameComplete />}
             </div>
         </>
     )
