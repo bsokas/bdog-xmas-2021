@@ -95,7 +95,7 @@ const GameBoard = ({ endGameHandler }: Props) => {
                 <div className="cards-container">
                     {gameCards?.map(card => {
                         const showImg = clickedCardA?.cardKey === card.cardKey || clickedCardB?.cardKey === card.cardKey
-                        if (foundCards.has(card.cardKey)) debugger
+            
                         return(
                             <GameCard
                                 {...card}
