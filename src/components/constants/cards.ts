@@ -5,11 +5,6 @@ export interface CardProps {
 
 const imagesRoot = '/cardImages'
 export const cards: CardProps[] = [
-    // Testing value
-    /**{
-        imagePath: '/cardImages/black_cat.png',
-        id: 'black-cat' 
-    },**/
     {
         id: 'max',
         imagePath: `${imagesRoot}/max.png`

@@ -65,17 +65,20 @@ const GameBoard = ({ endGameHandler }: Props) => {
      */
     const cardClickHandler = (cardKey: number, cardId: string): boolean => {
         if (foundCards.has(cardKey)) return true
-        
-        if (!clickedCardA) {
+
+        if (!clickedCardA && !clickedCardB) {
             setClickedCardA({ cardKey, cardId })
             return true
-        } else if (cardKey === clickedCardA.cardKey) {
-            setClickedCardA(undefined)
-            return false
-        } else if (!clickedCardB) {
+        } else if ((!clickedCardA && clickedCardB) && clickedCardB.cardKey !== cardKey) {
+            setClickedCardA({ cardKey, cardId })
+            return true
+        } else if ((!clickedCardB && clickedCardA) && clickedCardA.cardKey !== cardKey) {
             setClickedCardB({ cardKey, cardId })
             return true
-        } else if (cardKey === clickedCardB.cardKey) {
+        } else if (clickedCardA && clickedCardA.cardKey === cardKey) {
+            setClickedCardA(undefined)
+            return false
+        } else if (clickedCardB && clickedCardB.cardKey === cardKey) {
             setClickedCardB(undefined)
             return false
         }
