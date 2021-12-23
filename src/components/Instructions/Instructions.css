@@ -1,0 +1,54 @@
+.instruction-container {
+    position: absolute;
+    height: 80%;
+    width: 80%;
+    background-color: whitesmoke;
+    border-radius: 5%;
+    margin-top: 1%;
+    margin-left: 8%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border: solid;
+}
+
+.instructions-p {
+    text-align: center;
+    font-size: 2em;
+    font-weight: 900;
+}
+
+.piece {
+    text-align: left;
+    font-size: 1.5em;
+    color: darkgreen;
+    font-weight: 700;
+}
+
+.close {
+    height: 10%;
+    width: 10%;
+    background-color: darkseagreen;
+    border-radius: 5%;
+    border: solid;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-text {
+    text-align: center;
+    font-weight: 800;
+    font-size: 1.2em;
+}
+
+@media only screen and (max-width: 1000px) {
+    [class*="instructions-p"] {
+        font-size: 1.5rem;
+    }
+    [class*="close"] {
+        width: 50%;
+    }
+}

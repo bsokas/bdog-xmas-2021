@@ -1,16 +1,23 @@
 import { useState } from 'react'
 import './StartScreen.css'
 import { GameBoard } from '..'
+import Instructions from '../Instructions'
 
 const StartScreen = () => {
     const [gameOn, setGameOn] = useState<boolean>(false)
+    const [instructions, setInstructions] = useState<boolean>(false)
 
     const endGame = () => {
         setGameOn(false)
     }
 
+    const closeInstructions = () => {
+        setInstructions(false)
+    }
+
     return (
         <div className="start-container">
+            {instructions && <Instructions closeInstructions={closeInstructions} />}
             {!gameOn && 
                 <>
                     <div>
@@ -32,7 +39,7 @@ const StartScreen = () => {
                     </div>
                     <div
                         className="start-button"
-                        onClick={() => console.log('Clicked')}
+                        onClick={() => { setInstructions(true)}}
                     >
                         <p className="button">
                             {/* TODO instructions modal */}
