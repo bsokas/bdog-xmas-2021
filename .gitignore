@@ -12,7 +12,7 @@
 /build
 
 # image files (temporary, until deployment)
-/public/cardImages
+# /public/cardImages
 
 # misc
 .DS_Store
