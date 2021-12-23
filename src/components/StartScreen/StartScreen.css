@@ -34,3 +34,9 @@ p.button {
     color: white;
     text-align: center;
 }
+
+@media only screen and (max-width: 1200px) {
+    [class*="start-button"] {
+        width: 80%;
+    }
+}
